@@ -778,8 +778,7 @@ elif st.session_state.mode == "materi":
 
                     # Reaksi
                     if perc.get("reaksi"):
-                        reaksi_html = perc["reaksi"].replace("\n", "<br>").replace("
-", "<br>")
+                        reaksi_html = perc["reaksi"].replace("\n", "<br>")
                         st.markdown(f"""
                         <div class="about-card" style="margin-bottom:0.6rem">
                             <div class="about-title">⚗️ Reaksi yang Terjadi</div>
@@ -789,15 +788,14 @@ elif st.session_state.mode == "materi":
 
                     # Rumus
                     if perc.get("rumus"):
+                        keterangan_items = "".join([f"<div>• {k}</div>" for k in perc["keterangan_rumus"].split(" | ")])
                         st.markdown(f"""
                         <div class="about-card" style="margin-bottom:0">
                             <div class="about-title">📊 Rumus Perhitungan</div>
                             <div style="background:linear-gradient(135deg,var(--green),var(--green2));color:white;border-radius:10px;padding:0.8rem 1rem;font-family:monospace;font-size:0.95rem;text-align:center;margin-bottom:0.6rem">{perc['rumus']}</div>
-                            <div style="font-size:0.78rem;color:var(--text2);line-height:1.8">
-                        """
-                        for ket in perc["keterangan_rumus"].split(" | "):
-                            st.markdown(f"<span style='font-size:0.78rem;color:var(--text2)'>• {ket}</span><br>", unsafe_allow_html=True)
-                        st.markdown("</div></div>", unsafe_allow_html=True)
+                            <div style="font-size:0.78rem;color:var(--text2);line-height:1.8">{keterangan_items}</div>
+                        </div>
+                        """, unsafe_allow_html=True)
 
 
 
